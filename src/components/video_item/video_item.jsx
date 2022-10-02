@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './video_item.module.css';
 const VideoItem = ({ video, onVideoClick, video: { snippet }, display }) => {
-  console.log(video);
-  console.log(display);
   const displayType = display === 'list' ? styles.list : styles.grid;
   return (
     <li
