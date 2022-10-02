@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import VideoList from './components/video_list/video_list';
 import SearchHeader from './components/search_header/search_header';
 import VideoDetail from './components/video_detail/video_detail';
+import { Link } from 'react-router-dom';
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
@@ -16,17 +17,25 @@ function App({ youtube }) {
     youtube
       .search(query) //
       .then((videos) => setVideos(videos));
+    setSelectedVideo(null);
   };
 
-  useEffect(() => {
+  const main = () => {
     youtube
       .mostPopular() //
       .then((videos) => setVideos(videos));
+    setSelectedVideo(null);
+  };
+
+  useEffect(() => {
+    main();
   }, []);
-  console.log(selectedVideo);
+
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search} />
+      <Link to='/'>
+        <SearchHeader onSearch={search} onMain={main} />
+      </Link>
       <section className={styles.content}>
         {selectedVideo && (
           <div className={styles.detail}>

@@ -1,11 +1,10 @@
 import styles from './search_header.module.css';
 import React, { useRef } from 'react';
 
-const SearchHeader = ({ onSearch }) => {
+const SearchHeader = ({ onSearch, onMain }) => {
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
-    console.log(value);
     onSearch(value);
   };
   const onClick = () => {
@@ -16,9 +15,14 @@ const SearchHeader = ({ onSearch }) => {
       handleSearch();
     }
   };
+
+  const onMainPage = () => {
+    onMain();
+    inputRef.current.value = '';
+  };
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={onMainPage}>
         <img className={styles.img} src='/images/logo.png' alt='logo' />
         <h1 className={styles.title}>Youtube</h1>
       </div>
