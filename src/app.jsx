@@ -31,7 +31,8 @@ function App({ youtube }) {
   //
   useEffect(() => {
     main();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [main]);
 
   return (
     <div className={styles.app}>
