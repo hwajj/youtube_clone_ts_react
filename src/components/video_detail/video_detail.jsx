@@ -3,6 +3,7 @@ import styles from './video_detail.module.css';
 const VideoDetail = ({ video: { snippet }, video }) => (
   <section className={styles.detail}>
     <iframe
+      title='video details'
       className={styles.video}
       id='ytplayer'
       type='text/html'
