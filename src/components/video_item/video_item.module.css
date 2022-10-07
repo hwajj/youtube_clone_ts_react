@@ -35,6 +35,9 @@
 .channel {
   margin: 0;
   font-size: 0.8rem;
+  overflow: hidden;
+  line-height: 1.2em;
+  height: 2.4em;
 }
 
 .channel {
