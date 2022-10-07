@@ -20,18 +20,14 @@ function App({ youtube }) {
     setSelectedVideo(null);
   };
 
-  //
-  const main = useCallback(() => {
-    youtube
-      .mostPopular() //
-      .then((videos) => setVideos(videos));
+  const main = useCallback(async () => {
+    let videos = await youtube.mostPopular(); //
+    setVideos(videos);
     setSelectedVideo(null);
   }, [youtube]);
 
-  //
   useEffect(() => {
     main();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [main]);
 
   return (
