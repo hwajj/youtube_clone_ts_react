@@ -11,13 +11,11 @@ function App({ youtube }: { youtube: any }) {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const selectVideo = (video: Video) => {
-    // console.log(video);
     setSelectedVideo(() => video);
   };
 
   const search = useCallback(
     async (query: HTMLInputElement | null) => {
-      console.log(query);
       const q = (query as HTMLInputElement).value;
       let videos = await youtube.search(q);
       setVideos(videos);
@@ -28,7 +26,6 @@ function App({ youtube }: { youtube: any }) {
 
   const main = useCallback(async () => {
     let videos = await youtube.mostPopular(); //
-    console.log(videos);
     setVideos(videos);
     setSelectedVideo(null);
   }, [youtube]);

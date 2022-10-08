@@ -8,7 +8,6 @@ const SearchHeader: React.FC<{
   const inputRef = useRef<HTMLInputElement | null>(null);
   const handleSearch = () => {
     const value = inputRef.current;
-    console.log(value);
     props.onSearch(value);
   };
   const onClick = () => {

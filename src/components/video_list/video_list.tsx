@@ -11,7 +11,6 @@ const VideoList: React.FC<{
   return (
     <ul className={styles.videos}>
       {props.videos.map((video) => {
-        //        console.log(video);
         return (
           <VideoItem
             key={video.id}
