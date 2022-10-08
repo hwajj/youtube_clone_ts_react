@@ -21,7 +21,7 @@ function App({ youtube }: { youtube: any }) {
       const q = (query as HTMLInputElement).value;
       let videos = await youtube.search(q);
       setVideos(videos);
-      // setSelectedVideo(null);
+      setSelectedVideo(null);
     },
     [youtube]
   );
