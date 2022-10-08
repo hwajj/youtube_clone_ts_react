@@ -1,9 +1,9 @@
-import { searchVideo, Video } from "../../video";
+import { searchVideo } from "../../video";
+
+
 export class Youtube {
   key: string;
  // getRequestOption: { method: string; redirect: string; };
-
-
 
   constructor(apiKey:string) {
     this.key = apiKey;
@@ -16,7 +16,6 @@ export class Youtube {
 
       );
       const result = await response.json();
-      //console.log(result);
       return result.items;
     } catch (error) {
       return console.log('error', error);
