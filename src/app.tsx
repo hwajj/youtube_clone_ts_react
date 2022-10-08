@@ -4,24 +4,31 @@ import VideoList from './components/video_list/video_list';
 import SearchHeader from './components/search_header/search_header';
 import VideoDetail from './components/video_detail/video_detail';
 import { Link } from 'react-router-dom';
+import { Video } from './video';
 
-function App({ youtube }) {
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+function App({ youtube }: { youtube: any }) {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
-  const selectVideo = (video) => {
-    setSelectedVideo(video);
+  const selectVideo = (video: Video) => {
+    // console.log(video);
+    setSelectedVideo(() => video);
   };
 
-  const search = (query) => {
-    youtube
-      .search(query) //
-      .then((videos) => setVideos(videos));
-    setSelectedVideo(null);
-  };
+  const search = useCallback(
+    async (query: HTMLInputElement | null) => {
+      console.log(query);
+      const q = (query as HTMLInputElement).value;
+      let videos = await youtube.search(q);
+      setVideos(videos);
+      // setSelectedVideo(null);
+    },
+    [youtube]
+  );
 
   const main = useCallback(async () => {
     let videos = await youtube.mostPopular(); //
+    console.log(videos);
     setVideos(videos);
     setSelectedVideo(null);
   }, [youtube]);

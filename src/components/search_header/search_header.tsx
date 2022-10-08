@@ -1,24 +1,27 @@
 import styles from './search_header.module.css';
 import React, { useRef } from 'react';
 
-const SearchHeader = ({ onSearch, onMain }) => {
-  const inputRef = useRef();
+const SearchHeader: React.FC<{
+  onSearch: (value: HTMLInputElement | null) => void;
+  onMain: () => void;
+}> = (props) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const handleSearch = () => {
-    const value = inputRef.current.value;
-    onSearch(value);
+    const value = inputRef.current;
+    console.log(value);
+    props.onSearch(value);
   };
   const onClick = () => {
     handleSearch();
   };
-  const onKeyPress = (event) => {
+  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
   const onMainPage = () => {
-    onMain();
-    inputRef.current.value = '';
+    props.onMain();
   };
   return (
     <header className={styles.header}>
